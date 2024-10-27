@@ -1,12 +1,6 @@
 /*
-  ELEC1100 Your Lab#06 & Project Template
-
+  ELEC1100
   To program the car tracking the white line on a dark mat
-
-  Group No. (number of your project box):61  
-  Group Member 1 (name & SID): CHUNG HIU YIN 21062996
-  Group Member 2 (name & SID): ZHOU Zhuozhuang 21025883
-  
 */
 
 // assign meaningful names to those pins that will be used
@@ -65,7 +59,6 @@ void loop() {
   rightSensor = digitalRead(pinR_Sensor);
   currentMillis = millis();
 
-  
   // car stops at the start position when bumper sensor no trigger
   if ( bumperSensor && countBumper == 0 ) {
     analogWrite(pinL_PWM, 0);
@@ -90,81 +83,7 @@ void loop() {
     delay(350);  //1000ms=1s
     countBumper = countBumper + 1; }}
 
-
-  //turning360
-   else if ( bumperSensor ==1 && countBumper == 2){
-
-    if(currentMillis-startMillis<10000){
-      if ( !leftSensor && rightSensor ) {
-      analogWrite(pinL_PWM, 150);
-      analogWrite(pinR_PWM, 150);
-      digitalWrite(pinL_DIR, 0);
-      digitalWrite(pinR_DIR, 1);  }
-  if ( leftSensor && !rightSensor ) {
-      analogWrite(pinL_PWM, 150);
-      analogWrite(pinR_PWM, 150);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR, 0);  } 
-  if ( leftSensor && rightSensor ) {
-      analogWrite(pinL_PWM, 150);
-      analogWrite(pinR_PWM, 150);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR, 1); }
-    if (!leftSensor && !rightSensor){
-      analogWrite(pinL_PWM, 150);
-      analogWrite(pinR_PWM, 150);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR, 0);
-      delay(180);
-      analogWrite(pinL_PWM, 150);
-      analogWrite(pinR_PWM, 150);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR, 1);
-      delay(200); }}
-
-  if(currentMillis-startMillis>=10000){
-    threeif();
-    if ( !leftSensor && !rightSensor ){
-      analogWrite(pinL_PWM, 200);
-      analogWrite(pinR_PWM, 200);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR,0);
-      delay(1250);
-      analogWrite(pinL_PWM, 200);
-      analogWrite(pinR_PWM, 200);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR,1);
-      delay(100);
-      countBumper = countBumper +  1; }}}
-
-
-  //stop&move 9,11
-  else if ( bumperSensor ==1 && countBumper == 3){
-    threeif();
-    if ( !leftSensor && !rightSensor ) {
-      analogWrite(pinL_PWM, 0);
-      analogWrite(pinR_PWM, 0);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR, 1);
-      delay(1000);
-      analogWrite(pinL_PWM, 200);
-      analogWrite(pinR_PWM, 200);
-      digitalWrite(pinL_DIR, 1);
-      digitalWrite(pinR_DIR, 1);
-      delay(100);
-      countBumper = countBumper + 1;}}
-  
-  
-  }
-
-
-
-
-
-
-
-
-
+}
 
 void threeif()
   {if ( !leftSensor && rightSensor ) {
